@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Valeria Khristinina](https://up.htmlacademy.ru/javascript/23/user/1791339).
-* Наставник: `Неизвестно`.
+- Студент: [Valeria Khristinina](https://up.htmlacademy.ru/javascript/23/user/1791339).
+- Наставник: [Irina Frolova](https://htmlacademy.ru/profile/id1043867)
 
 ---
 
