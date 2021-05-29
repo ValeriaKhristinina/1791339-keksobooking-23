@@ -12,11 +12,13 @@ const findRandomNumber = (from, to) => {
 console.log(findRandomNumber(0, 500));
 
 const findRandomFloatNumber = (from, to, round) => {
-  const result =
-    from >= to || from < 0 || round <= 0
-      ? 'Please, write correct arrange'
-      : (Math.random() * to + from).toFixed(round);
-  return result;
+  if (from >= to || from < 0 || round < 0) {
+    return 'Please, write correct value';
+  } else if (round === 0) {
+    return Math.floor(Math.random() * to) + from;
+  }
+
+  return (Math.random() * to + from).toFixed(round);
 };
 
 console.log(findRandomFloatNumber(1, 10, 3));
