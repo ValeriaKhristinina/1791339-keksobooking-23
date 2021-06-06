@@ -40,6 +40,7 @@ const getRandomArrayElement = (elements) =>
 
 const getRandomArray = (array) => {
   const newArray = [];
+  // eslint-disable-next-line id-length
   for (let i = 0; i <= array.length - 1; i++) {
     // find random number from 0 to 1
     const RANDOM_NUMBER = Math.floor(Math.random() * 2);
