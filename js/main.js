@@ -1,23 +1,3 @@
-/* eslint-disable no-console */
-
-// https://www.w3schools.com/js/js_random.asp
-const findRandomNumber = (from, to) =>
-  from >= to || from < 0 ? -1 : Math.floor(Math.random() * to) + from;
-
-console.log(findRandomNumber(0, 5));
-
-const findRandomFloatNumber = (from, to, round) => {
-  if (from >= to || from < 0 || round < 0) {
-    return -1;
-  } else if (round === 0) {
-    return Math.floor(Math.random() * to) + from;
-  }
-
-  return Number((Math.random() * (to - from) + from).toFixed(round));
-};
-
-console.log(findRandomFloatNumber(1, 3, 2));
-
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const CHECKIN = ['12:00', '13:00', '14:00'];
 const CHECKOUT = ['12:00', '13:00', '14:00'];
@@ -35,17 +15,32 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
 
+// https://www.w3schools.com/js/js_random.asp
+const findRandomNumber = (from, to) =>
+  from >= to || from < 0
+    ? -1
+    : Math.floor(Math.random() * (to - from + 1)) + from;
+
+const findRandomFloatNumber = (from, to, round) => {
+  if (from >= to || from < 0 || round < 0) {
+    return -1;
+  } else if (round === 0) {
+    return Math.floor(Math.random() * to) + from;
+  }
+
+  return Number((Math.random() * (to - from) + from).toFixed(round));
+};
+
 const getRandomArrayElement = (elements) =>
   elements[findRandomNumber(0, elements.length - 1)];
 
 const getRandomArray = (array) => {
   const newArray = [];
-  // eslint-disable-next-line id-length
-  for (let i = 0; i <= array.length - 1; i++) {
-    // find random number from 0 to 1
-    const RANDOM_NUMBER = Math.floor(Math.random() * 2);
+
+  for (let index = 0; index <= array.length - 1; index++) {
+    const RANDOM_NUMBER = findRandomNumber(0, 1);
     if (RANDOM_NUMBER === 1) {
-      newArray.push(array[i]);
+      newArray.push(array[index]);
     }
   }
   return newArray;
@@ -62,7 +57,7 @@ const createOffer = () => {
     offer: {
       title: 'Супер предложение',
       address: `${latitude}, ${longitude}`,
-      price: 0,
+      price: findRandomNumber(100, 10000),
       type: getRandomArrayElement(TYPE),
       rooms: findRandomNumber(1, 5),
       guests: findRandomNumber(1, 5),
@@ -85,4 +80,5 @@ const nearbyOffers = new Array(NEARBY_OFFERS_COUNT)
   .fill(null)
   .map(() => createOffer());
 
+// eslint-disable-next-line no-console
 console.log(nearbyOffers);
