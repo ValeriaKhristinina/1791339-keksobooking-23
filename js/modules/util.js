@@ -32,5 +32,5 @@ export {
   findRandomNumber,
   findRandomFloatNumber,
   getRandomArrayElement,
-  getRandomArray,
+  getRandomArray
 };

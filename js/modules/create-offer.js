@@ -2,7 +2,7 @@ import {
   findRandomNumber,
   findRandomFloatNumber,
   getRandomArrayElement,
-  getRandomArray,
+  getRandomArray
 } from './util.js';
 
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
@@ -16,6 +16,7 @@ const FEATURES = [
   'elevator',
   'conditioner',
 ];
+
 const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
