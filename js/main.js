@@ -1,4 +1,4 @@
-import './modules/create-offer.js';
+import { createOffer } from './modules/create-offer.js';
 
 const NEARBY_OFFERS_COUNT = 10;
 

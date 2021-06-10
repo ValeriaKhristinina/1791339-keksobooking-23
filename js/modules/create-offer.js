@@ -49,3 +49,5 @@ const createOffer = () => {
     },
   };
 };
+
+export { createOffer };
