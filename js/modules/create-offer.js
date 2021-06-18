@@ -3,7 +3,7 @@ import {
   findRandomFloatNumber,
   getRandomArrayElement,
   getRandomArray
-} from './util.js';
+} from '../utils/get-random.js';
 
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const CHECKIN = ['12:00', '13:00', '14:00'];
@@ -22,6 +22,9 @@ const PHOTOS = [
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 ];
+
+const NEARBY_OFFERS_COUNT = 10;
+
 
 const createOffer = () => {
   const latitude = findRandomFloatNumber(35.65, 35.7, 5);
@@ -51,4 +54,17 @@ const createOffer = () => {
   };
 };
 
-export { createOffer };
+const createOffers = () => new Array(NEARBY_OFFERS_COUNT).fill(null).map(() => createOffer());
+
+const renameType = (type) => {
+  switch (type) {
+    case 'palace': return 'Дворец';
+    case 'flat': return 'Квартира';
+    case 'house': return 'Дом';
+    case 'bungalow': return 'Бунгало';
+    case 'hotel': return 'Отель';
+    default: return 'No type';
+  }
+};
+
+export { createOffers, renameType};

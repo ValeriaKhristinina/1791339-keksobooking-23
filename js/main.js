@@ -1,10 +1,1 @@
-/* eslint-disable no-console */
-import { createOffer } from './modules/create-offer.js';
-
-const NEARBY_OFFERS_COUNT = 10;
-
-const nearbyOffers = new Array(NEARBY_OFFERS_COUNT)
-  .fill(null)
-  .map(() => createOffer());
-
-console.log(nearbyOffers);
+import './modules/popup.js';
