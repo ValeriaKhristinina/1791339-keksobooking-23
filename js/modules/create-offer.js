@@ -6,6 +6,13 @@ import {
 } from '../utils/get-random.js';
 
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
+const NAMES_TYPE = {
+  palace: 'Дворец',
+  flat: 'Квартира',
+  house: 'Дом',
+  bungalow: 'Бунгало',
+  hotel: 'Отель',
+};
 const CHECKIN = ['12:00', '13:00', '14:00'];
 const CHECKOUT = ['12:00', '13:00', '14:00'];
 const FEATURES = [
@@ -38,7 +45,7 @@ const createOffer = () => {
       title: 'Супер предложение',
       address: `${latitude}, ${longitude}`,
       price: findRandomNumber(100, 10000),
-      type: getRandomArrayElement(TYPE),
+      type: NAMES_TYPE[getRandomArrayElement(TYPE)],
       rooms: findRandomNumber(1, 5),
       guests: findRandomNumber(1, 5),
       checkin: getRandomArrayElement(CHECKIN),
@@ -56,15 +63,4 @@ const createOffer = () => {
 
 const createOffers = () => new Array(NEARBY_OFFERS_COUNT).fill(null).map(() => createOffer());
 
-const renameType = (type) => {
-  switch (type) {
-    case 'palace': return 'Дворец';
-    case 'flat': return 'Квартира';
-    case 'house': return 'Дом';
-    case 'bungalow': return 'Бунгало';
-    case 'hotel': return 'Отель';
-    default: return 'No type';
-  }
-};
-
-export { createOffers, renameType};
+export { createOffers};
