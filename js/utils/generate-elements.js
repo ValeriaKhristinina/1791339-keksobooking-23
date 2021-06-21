@@ -1,7 +1,7 @@
 // Craete new HTML-element
-const makeElement = (tagName, className, textDescription) => {
+const makeElement = (tagName, classNames, textDescription) => {
   const newElement = document.createElement(tagName);
-  newElement.classList.add(className);
+  classNames.forEach((element) => newElement.classList.add(element));
   newElement.textContent = textDescription;
 
   return newElement;
@@ -12,8 +12,7 @@ const makeElement = (tagName, className, textDescription) => {
 const createListFeatures = (arrayElements) => {
   const fragment = document.createDocumentFragment();
   arrayElements.forEach((element) => {
-    const newListItem = makeElement('li', 'popup__feature');
-    newListItem.classList.add(`popup__feature--${element}`);
+    const newListItem = makeElement('li', ['popup__feature', `popup__feature--${element}`]);
     fragment.appendChild(newListItem);
   });
   return fragment;
@@ -23,7 +22,7 @@ const createListFeatures = (arrayElements) => {
 const createListPhotos = (arrayPhotos) => {
   const fragment = document.createDocumentFragment();
   arrayPhotos.forEach((element) => {
-    const elementImg = makeElement('img', 'popup__photo');
+    const elementImg = makeElement('img', ['popup__photo']);
     elementImg.width = 45;
     elementImg.height = 40;
     elementImg.alt = 'Фотография жилья';
