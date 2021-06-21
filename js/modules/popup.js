@@ -1,4 +1,4 @@
-import {createOffers} from './create-offer.js';
+import {createOffers, NAMES_TYPE} from './create-offer.js';
 import { createListFeatures, createListPhotos } from '../utils/generate-elements.js';
 
 const popupTemplate = document.querySelector('#card').content.querySelector('.popup');
@@ -14,7 +14,7 @@ const drawOffer = (offer) => {
   offer.offer.title ? offerElement.querySelector('.popup__title').textContent = offer.offer.title : offerElement.querySelector('.popup__title').style.display = 'none';
   offer.offer.address ? offerElement.querySelector('.popup__text--address').textContent = offer.offer.address : offerElement.querySelector('.popup__text--address').style.display = 'none';
   offer.offer.price ? offerElement.querySelector('.popup__text--price').textContent = `${offer.offer.price} ₽/ночь` : offerElement.querySelector('.popup__text--price').style.display = 'none';
-  offer.offer.type ? offerElement.querySelector('.popup__type').textContent = (offer.offer.type) : offerElement.querySelector('.popup__type').style.display = 'none';
+  offer.offer.type ? offerElement.querySelector('.popup__type').textContent = NAMES_TYPE[(offer.offer.type)] : offerElement.querySelector('.popup__type').style.display = 'none';
   (offer.offer.rooms && offer.offer.guests ) ? offerElement.querySelector('.popup__text--capacity').textContent = `${offer.offer.rooms} комнаты для ${offer.offer.guests} гостей` : offerElement.querySelector('.popup__text--capacity').style.display = 'none';
   (offer.offer.checkin && offer.offer.checkout) ? offerElement.querySelector('.popup__text--time').textContent = `Заезд после ${offer.offer.checkin}, выезд до ${offer.offer.checkout}` : offerElement.querySelector('.popup__text--time').style.display = 'none';
   offerElement.querySelector('.popup__features').innerHTML = '';

@@ -45,7 +45,7 @@ const createOffer = () => {
       title: 'Супер предложение',
       address: `${latitude}, ${longitude}`,
       price: findRandomNumber(100, 10000),
-      type: NAMES_TYPE[getRandomArrayElement(TYPE)],
+      type: getRandomArrayElement(TYPE),
       rooms: findRandomNumber(1, 5),
       guests: findRandomNumber(1, 5),
       checkin: getRandomArrayElement(CHECKIN),
@@ -63,4 +63,4 @@ const createOffer = () => {
 
 const createOffers = () => new Array(NEARBY_OFFERS_COUNT).fill(null).map(() => createOffer());
 
-export { createOffers};
+export { createOffers, NAMES_TYPE};
