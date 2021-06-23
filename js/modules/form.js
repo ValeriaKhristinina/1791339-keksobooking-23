@@ -23,12 +23,16 @@ titleInput.addEventListener('input', () => {
   titleInput.reportValidity();
 });
 
-priceInput.addEventListener('invalid', () => {
+priceInput.addEventListener('input', () => {
   if (priceInput.value > MAX_PRICE_VALUE) {
     priceInput.setCustomValidity(`Цена не может превышать ${MAX_PRICE_VALUE} руб.`);
+  } else if(priceInput.value <= 0) {
+    priceInput.setCustomValidity('Цена не может быть меньше 0 руб.');
   } else {
     priceInput.setCustomValidity('');
   }
+
+  priceInput.reportValidity();
 });
 
 
