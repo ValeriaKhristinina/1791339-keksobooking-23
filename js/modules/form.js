@@ -48,11 +48,7 @@ const addValidationForRooms = () => {
   const roomValue = roomsNumber.value;
   const availableCapacity = ROOMS_CAPACITY[roomValue];
   capacityItems.forEach((capacityItem) => {
-    if (availableCapacity.includes(capacityItem.value)) {
-      capacityItem.disabled = false;
-    } else {
-      capacityItem.disabled = true;
-    }
+    capacityItem.disabled = !availableCapacity.includes(capacityItem.value);
   });
 };
 
