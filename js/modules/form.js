@@ -37,21 +37,21 @@ priceInput.addEventListener('input', () => {
 
 
 function addValidationForRooms() {
-  const capacityItem = capacity.querySelectorAll('option');
+  const capacityItems = capacity.querySelectorAll('option');
   const roomsValue =  roomsNumber.value;
-  capacityItem.forEach((element) => {
+  capacityItems.forEach((element) => {
 
     if (roomsValue === '100') {
       if (element.value !== '0') {
-        element.setAttribute('disabled', 'disabled');
+        element.disabled = true;
       }  else {
-        element.removeAttribute('disabled', 'disabled');
+        element.disabled = false;
       }
     } else {
       if (element.value > roomsValue || element.value === '0') {
-        element.setAttribute('disabled', 'disabled');
+        element.disabled = true;
       }  else {
-        element.removeAttribute('disabled', 'disabled');
+        element.disabled = false;
       }
     }
   });
