@@ -9,6 +9,13 @@ const MAX_TITLE_LENGTH = 100;
 
 const MAX_PRICE_VALUE = 1000000;
 
+const ROOMS_CAPACITY = {
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0'],
+};
+
 titleInput.addEventListener('input', () => {
   const titleInputLength = titleInput.value.length;
 
@@ -36,26 +43,18 @@ priceInput.addEventListener('input', () => {
 });
 
 
-function addValidationForRooms() {
+const addValidationForRooms = () => {
   const capacityItems = capacity.querySelectorAll('option');
-  const roomsValue =  roomsNumber.value;
-  capacityItems.forEach((element) => {
-
-    if (roomsValue === '100') {
-      if (element.value !== '0') {
-        element.disabled = true;
-      }  else {
-        element.disabled = false;
-      }
+  const roomValue = roomsNumber.value;
+  const availableCapacity = ROOMS_CAPACITY[roomValue];
+  capacityItems.forEach((capacityItem) => {
+    if (availableCapacity.includes(capacityItem.value)) {
+      capacityItem.disabled = false;
     } else {
-      if (element.value > roomsValue || element.value === '0') {
-        element.disabled = true;
-      }  else {
-        element.disabled = false;
-      }
+      capacityItem.disabled = true;
     }
   });
-}
+};
 
 roomsNumber.addEventListener('change', () => {
   addValidationForRooms();
