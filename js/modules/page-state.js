@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const adForm = document.querySelector('.ad-form');
 const fieldsets = adForm.querySelectorAll('fieldset');
 const mapFilter = document.querySelector('.map__filters');
@@ -20,4 +19,6 @@ const activePageState = () => {
   });
 };
 
-export { disablePageState, activePageState};
+disablePageState();
+
+export { activePageState};
