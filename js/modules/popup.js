@@ -1,11 +1,7 @@
-import {createOffers, NAMES_TYPE} from './create-offer.js';
+import {NAMES_TYPE} from './create-offer.js';
 import { createListFeatures, createListPhotos } from '../utils/generate-elements.js';
 
 const popupTemplate = document.querySelector('#card').content.querySelector('.popup');
-const mapCanvas = document.querySelector('#map-canvas');
-const similarOffers = createOffers();
-
-const firstOffer = similarOffers[0];
 
 const drawOffer = (offer) => {
   const listFeatures = createListFeatures(offer.offer.features);
@@ -44,11 +40,8 @@ const drawOffer = (offer) => {
   offer.author.avatar
     ? offerElement.querySelector('.popup__avatar').src = offer.author.avatar
     : offerElement.querySelector('.popup__avatar').style.display = 'none';
-  mapCanvas.appendChild(offerElement);
+  // mapCanvas.appendChild(offerElement);
+  return offerElement;
 };
 
-drawOffer(firstOffer);
-
-// similarOffers.forEach((offer) => {
-//   drawOffer(offer);
-// });
+export {drawOffer};
