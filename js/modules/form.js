@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
 const roomsNumber = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
+const address = document.querySelector('#address');
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -56,4 +56,4 @@ roomsNumber.addEventListener('change', () => {
   addValidationForRooms();
 });
 
-export {addValidationForRooms};
+export {addValidationForRooms, address};
