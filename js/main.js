@@ -1,11 +1,7 @@
+import './modules/page-state.js';
 import './modules/popup.js';
-import {disablePageState, activePageState} from './modules/page-state.js';
 import {addValidationForRooms} from './modules/form.js';
+import './modules/map.js';
 
-disablePageState();
-
-window.addEventListener('load', () => {
-  activePageState();
-  addValidationForRooms();
-});
+addValidationForRooms();
 
