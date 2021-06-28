@@ -6,6 +6,8 @@ const roomsNumber = document.querySelector('#room_number');
 const capacity = document.querySelector('#capacity');
 const address = document.querySelector('#address');
 const type = document.querySelector('#type');
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -69,6 +71,14 @@ const addValidationForRooms = () => {
 
 roomsNumber.addEventListener('change', () => {
   addValidationForRooms();
+});
+
+timeIn.addEventListener('change', () => {
+  timeOut.value = timeIn.value;
+});
+
+timeOut.addEventListener('change', () => {
+  timeIn.value = timeOut.value;
 });
 
 export {addValidationForRooms, addValidationForMinPrice, address};
