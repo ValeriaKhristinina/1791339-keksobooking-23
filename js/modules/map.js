@@ -44,6 +44,11 @@ const mainPinMarker = L.marker(
     icon: mainPinIcon,
   },
 );
+const icon = L.icon({
+  iconUrl: '../../img/pin.svg',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+});
 
 mainPinMarker.addTo(map);
 mainPinMarker.on('moveend', (evt) => {
@@ -52,16 +57,11 @@ mainPinMarker.on('moveend', (evt) => {
 });
 
 offersObj.forEach((obj) => {
-  const icon = L.icon({
-    iconUrl: '../../img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-  });
   const marker = L.marker({
     lat: obj.offer.location.lat,
     lng: obj.offer.location.lng,
   }, {
-    icon,
+    icon: icon,
   });
 
   marker
