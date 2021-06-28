@@ -6,12 +6,26 @@ import {
 } from '../utils/get-random.js';
 
 const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
-const NAMES_TYPE = {
-  palace: 'Дворец',
-  flat: 'Квартира',
-  house: 'Дом',
-  bungalow: 'Бунгало',
-  hotel: 'Отель',
+const TYPES = {
+  palace: {
+    name: 'Дворец',
+    minPrice: 10000,
+  },
+  flat: {
+    name: 'Квартира',
+    minPrice: 1000,
+  },
+  house: {
+    name: 'Дом',
+    minPrice: 5000,
+  },
+  bungalow: {
+    name: 'Бунгало',
+    minPrice: 0,
+  },
+  hotel: {
+    name: 'Отель',
+    minPrice: 3000},
 };
 const CHECKIN = ['12:00', '13:00', '14:00'];
 const CHECKOUT = ['12:00', '13:00', '14:00'];
@@ -63,4 +77,4 @@ const createOffer = () => {
 
 const createOffers = () => new Array(NEARBY_OFFERS_COUNT).fill(null).map(() => createOffer());
 
-export { createOffers, NAMES_TYPE};
+export { createOffers, TYPES};

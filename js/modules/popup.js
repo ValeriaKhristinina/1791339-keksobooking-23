@@ -1,4 +1,4 @@
-import {NAMES_TYPE} from './create-offer.js';
+import {TYPES} from './create-offer.js';
 import { createListFeatures, createListPhotos } from '../utils/generate-elements.js';
 
 const popupTemplate = document.querySelector('#card').content.querySelector('.popup');
@@ -18,7 +18,7 @@ const drawOffer = (offer) => {
     ? offerElement.querySelector('.popup__text--price').textContent = `${offer.offer.price} ₽/ночь`
     : offerElement.querySelector('.popup__text--price').style.display = 'none';
   offer.offer.type
-    ? offerElement.querySelector('.popup__type').textContent = NAMES_TYPE[offer.offer.type]
+    ? offerElement.querySelector('.popup__type').textContent = TYPES[offer.offer.type].name
     : offerElement.querySelector('.popup__type').style.display = 'none';
   (offer.offer.rooms && offer.offer.guests )
     ? offerElement.querySelector('.popup__text--capacity').textContent = `${offer.offer.rooms} комнаты для ${offer.offer.guests} гостей`
