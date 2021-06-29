@@ -37,20 +37,19 @@ titleInput.addEventListener('input', () => {
 
 const addValidationForMinPrice = () => {
   const typeMinPriceValue = TYPES[type.value].minPrice;
-  priceInput.placeholder = typeMinPriceValue;
   minPriceValue = typeMinPriceValue;
+  priceInput.placeholder = minPriceValue;
+  priceInput.min = minPriceValue;
 };
 
-type.addEventListener('change', () => {
-  addValidationForMinPrice();
-});
+type.addEventListener('change', addValidationForMinPrice);
 
 priceInput.addEventListener('input', () => {
   if (priceInput.value > MAX_PRICE_VALUE) {
     priceInput.setCustomValidity(`Цена не может превышать ${MAX_PRICE_VALUE} руб.`);
-  } else if(priceInput.value <= 0) {
+  } else if (priceInput.value < 0) {
     priceInput.setCustomValidity('Цена не может быть меньше 0 руб.');
-  }else if (priceInput.value < minPriceValue) {
+  } else if (priceInput.value < minPriceValue) {
     priceInput.setCustomValidity(`Цена не может быть меньше ${minPriceValue} руб.`);
   } else {
     priceInput.setCustomValidity('');
