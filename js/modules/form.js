@@ -36,8 +36,7 @@ titleInput.addEventListener('input', () => {
 });
 
 const addValidationForMinPrice = () => {
-  const typeMinPriceValue = TYPES[type.value].minPrice;
-  minPriceValue = typeMinPriceValue;
+  minPriceValue = TYPES[type.value].minPrice;
   priceInput.placeholder = minPriceValue;
   priceInput.min = minPriceValue;
 };
