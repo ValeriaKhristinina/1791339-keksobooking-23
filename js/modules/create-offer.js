@@ -5,7 +5,6 @@ import {
   getRandomArray
 } from '../utils/get-random.js';
 
-const TYPE = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
 const TYPES = {
   palace: {
     name: 'Дворец',
@@ -27,6 +26,7 @@ const TYPES = {
     name: 'Отель',
     minPrice: 3000},
 };
+
 const CHECKIN = ['12:00', '13:00', '14:00'];
 const CHECKOUT = ['12:00', '13:00', '14:00'];
 const FEATURES = [
@@ -59,7 +59,7 @@ const createOffer = () => {
       title: 'Супер предложение',
       address: `${latitude}, ${longitude}`,
       price: findRandomNumber(100, 10000),
-      type: getRandomArrayElement(TYPE),
+      type: getRandomArrayElement(Object.keys(TYPES)),
       rooms: findRandomNumber(1, 5),
       guests: findRandomNumber(1, 5),
       checkin: getRandomArrayElement(CHECKIN),
