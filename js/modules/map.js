@@ -61,7 +61,7 @@ offersObj.forEach((obj) => {
     lat: obj.offer.location.lat,
     lng: obj.offer.location.lng,
   }, {
-    icon: icon,
+    icon,
   });
 
   marker
