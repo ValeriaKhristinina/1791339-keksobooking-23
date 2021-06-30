@@ -10,6 +10,9 @@ const makeElement = (tagName, classNames, textDescription) => {
 
 //Create new list of 'features' HTML-elements
 const createListFeatures = (arrayElements) => {
+  if (!arrayElements) {
+    return null;
+  }
   const fragment = document.createDocumentFragment();
   arrayElements.forEach((element) => {
     const newListItem = makeElement('li', ['popup__feature', `popup__feature--${element}`]);
@@ -20,6 +23,9 @@ const createListFeatures = (arrayElements) => {
 
 //Create new list of images
 const createListPhotos = (arrayPhotos) => {
+  if (!arrayPhotos) {
+    return null;
+  }
   const fragment = document.createDocumentFragment();
   arrayPhotos.forEach((element) => {
     const elementImg = makeElement('img', ['popup__photo']);

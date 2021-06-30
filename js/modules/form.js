@@ -1,4 +1,4 @@
-import { TYPES } from './create-offer.js';
+import { TYPES } from './popup.js';
 
 const titleInput = document.querySelector('#title');
 const priceInput = document.querySelector('#price');
