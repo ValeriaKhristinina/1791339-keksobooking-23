@@ -1,11 +1,11 @@
 import {activePageState} from './page-state.js';
-import {address} from './form.js';
 import { drawOffer } from './popup.js';
 
 const TOKIO_COORDINATES = {
   lat: 35.65283,
   lng: 139.83947,
 };
+const address = document.querySelector('#address');
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -68,11 +68,11 @@ const renderPopups = (data) => {
   });
 };
 
-// const setDefaultPosition = () => {
-//   mainPinMarker.setLatLng({
-//     lat: TOKIO_COORDINATES.lat,
-//     lng: TOKIO_COORDINATES.lng,
-//   });
-// };
+const setDefaultPosition = () => {
+  mainPinMarker.setLatLng({
+    lat: TOKIO_COORDINATES.lat,
+    lng: TOKIO_COORDINATES.lng,
+  });
+};
 
-export {renderPopups, mainPinIcon, mainPinMarker, TOKIO_COORDINATES};
+export {renderPopups, mainPinIcon, mainPinMarker, setDefaultPosition};

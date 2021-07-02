@@ -1,7 +1,7 @@
 import { TYPES } from './popup.js';
 import { URL_API } from './api.js';
-import {showAlert} from './../utils/show-alert.js';
-import {mainPinMarker, TOKIO_COORDINATES} from './map.js';
+import { showAlert } from './../utils/show-alert.js';
+import { setDefaultPosition } from './map.js';
 
 const form = document.querySelector('.ad-form');
 const titleInput = form.querySelector('#title');
@@ -114,10 +114,7 @@ const formSubmit = (onSucsses) => {
 
 const clearForm = () => {
   form.reset();
-  mainPinMarker.setLatLng({
-    lat: TOKIO_COORDINATES.lat,
-    lng: TOKIO_COORDINATES.lng,
-  });
+  setDefaultPosition();
   setTimeout(() => {
     address.value = defaultCoordinates;
   }, 0);
