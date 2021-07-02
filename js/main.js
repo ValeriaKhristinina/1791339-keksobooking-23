@@ -1,9 +1,10 @@
 import './modules/page-state.js';
 import './modules/popup.js';
-import {addValidationForRooms, addValidationForMinPrice} from './modules/form.js';
+import {addValidationForRooms, addValidationForMinPrice, clearForm} from './modules/form.js';
 import {renderPopups} from './modules/map.js';
 import {getData} from './modules/api.js';
 import {showAlert} from './utils/show-alert.js';
+import {formSubmit} from './modules/form.js';
 
 addValidationForRooms();
 addValidationForMinPrice();
@@ -16,4 +17,5 @@ getData()
     showAlert('Произошла ошибка при загрузке данных');
   });
 
+formSubmit(clearForm);
 

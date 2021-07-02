@@ -1,13 +1,17 @@
 import { TYPES } from './popup.js';
+import { URL_API } from './api.js';
+import {showAlert} from './../utils/show-alert.js';
+import {mainPinMarker, TOKIO_COORDINATES} from './map.js';
 
-const titleInput = document.querySelector('#title');
-const priceInput = document.querySelector('#price');
-const roomsNumber = document.querySelector('#room_number');
-const capacity = document.querySelector('#capacity');
-const address = document.querySelector('#address');
-const type = document.querySelector('#type');
-const timeIn = document.querySelector('#timein');
-const timeOut = document.querySelector('#timeout');
+const form = document.querySelector('.ad-form');
+const titleInput = form.querySelector('#title');
+const priceInput = form.querySelector('#price');
+const roomsNumber = form.querySelector('#room_number');
+const capacity = form.querySelector('#capacity');
+const address = form.querySelector('#address');
+const type = form.querySelector('#type');
+const timeIn = form.querySelector('#timein');
+const timeOut = form.querySelector('#timeout');
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -21,6 +25,8 @@ const ROOMS_CAPACITY = {
   3: ['1', '2', '3'],
   100: ['0'],
 };
+
+const defaultCoordinates = address.value;
 
 titleInput.addEventListener('input', () => {
   const titleInputLength = titleInput.value.length;
@@ -79,4 +85,44 @@ timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
-export {addValidationForRooms, addValidationForMinPrice, address};
+const formSubmit = (onSucsses) => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    address.disabled = false;
+    const formData = new FormData(form);
+    address.disabled = true;
+
+    fetch(URL_API,
+      {
+        method: 'POST',
+        body: formData,
+      },
+    )
+      .then((response) => {
+        if (response.ok) {
+          onSucsses();
+        } else {
+          showAlert('Не удалось отправить форму');
+        }
+      })
+      .catch(() => {
+        showAlert('Не удалось отправить форму');
+      }) ;
+  });
+
+};
+
+const clearForm = () => {
+  form.reset();
+  mainPinMarker.setLatLng({
+    lat: TOKIO_COORDINATES.lat,
+    lng: TOKIO_COORDINATES.lng,
+  });
+  setTimeout(() => {
+    address.value = defaultCoordinates;
+  }, 0);
+};
+
+form.addEventListener('reset', clearForm);
+
+export {addValidationForRooms, addValidationForMinPrice, address, formSubmit, clearForm};
