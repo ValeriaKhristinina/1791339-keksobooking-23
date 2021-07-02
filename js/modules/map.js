@@ -68,11 +68,11 @@ const renderPopups = (data) => {
   });
 };
 
-const setDefaultPosition = () => {
-  mainPinMarker.setLatLng({
-    lat: TOKIO_COORDINATES.lat,
-    lng: TOKIO_COORDINATES.lng,
-  });
-};
+// const setDefaultPosition = () => {
+//   mainPinMarker.setLatLng({
+//     lat: TOKIO_COORDINATES.lat,
+//     lng: TOKIO_COORDINATES.lng,
+//   });
+// };
 
 export {renderPopups, mainPinIcon, mainPinMarker, TOKIO_COORDINATES};
