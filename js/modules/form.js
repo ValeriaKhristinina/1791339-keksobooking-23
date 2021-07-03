@@ -2,6 +2,7 @@ import { TYPES } from './popup.js';
 import { URL_API } from './api.js';
 import { showAlert } from './../utils/show-alert.js';
 import { setDefaultPosition } from './map.js';
+// import {showSuccessMessege} from './success.js';
 
 const form = document.querySelector('.ad-form');
 const titleInput = form.querySelector('#title');
@@ -85,7 +86,7 @@ timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
-const formSubmit = (onSucsses) => {
+const formSubmit = (onSucsses, showMessege) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     address.disabled = false;
@@ -101,6 +102,7 @@ const formSubmit = (onSucsses) => {
       .then((response) => {
         if (response.ok) {
           onSucsses();
+          showMessege();
         } else {
           showAlert('Не удалось отправить форму');
         }

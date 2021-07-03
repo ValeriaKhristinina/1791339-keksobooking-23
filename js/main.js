@@ -5,6 +5,8 @@ import {renderPopups} from './modules/map.js';
 import {getData} from './modules/api.js';
 import {showAlert} from './utils/show-alert.js';
 import {formSubmit} from './modules/form.js';
+import {showSuccessMessege} from './modules/success.js';
+
 
 addValidationForRooms();
 addValidationForMinPrice();
@@ -17,5 +19,5 @@ getData()
     showAlert('Произошла ошибка при загрузке данных');
   });
 
-formSubmit(clearForm);
+formSubmit(clearForm, showSuccessMessege);
 
