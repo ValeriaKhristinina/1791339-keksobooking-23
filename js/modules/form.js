@@ -86,7 +86,7 @@ timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
-const formSubmit = (onSucsses, showMessege) => {
+const formSubmit = (onSucsses, showMessege, onError) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     address.disabled = false;
@@ -104,11 +104,11 @@ const formSubmit = (onSucsses, showMessege) => {
           onSucsses();
           showMessege();
         } else {
-          showAlert('Не удалось отправить форму');
+          onError();
         }
       })
       .catch(() => {
-        showAlert('Не удалось отправить форму');
+        onError();
       }) ;
   });
 
