@@ -1,6 +1,5 @@
 import { TYPES } from './popup.js';
 import { URL_API } from './api.js';
-import { showAlert } from './../utils/show-alert.js';
 import { setDefaultPosition } from './map.js';
 // import {showSuccessMessege} from './success.js';
 
