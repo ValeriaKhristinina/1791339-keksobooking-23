@@ -1,6 +1,26 @@
-import {TYPES} from './create-offer.js';
 import { createListFeatures, createListPhotos } from '../utils/generate-elements.js';
 
+const TYPES = {
+  palace: {
+    name: 'Дворец',
+    minPrice: 10000,
+  },
+  flat: {
+    name: 'Квартира',
+    minPrice: 1000,
+  },
+  house: {
+    name: 'Дом',
+    minPrice: 5000,
+  },
+  bungalow: {
+    name: 'Бунгало',
+    minPrice: 0,
+  },
+  hotel: {
+    name: 'Отель',
+    minPrice: 3000},
+};
 const popupTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 const drawOffer = (offer) => {
@@ -40,8 +60,7 @@ const drawOffer = (offer) => {
   offer.author.avatar
     ? offerElement.querySelector('.popup__avatar').src = offer.author.avatar
     : offerElement.querySelector('.popup__avatar').style.display = 'none';
-  // mapCanvas.appendChild(offerElement);
   return offerElement;
 };
 
-export {drawOffer};
+export {drawOffer, TYPES};

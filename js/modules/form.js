@@ -1,13 +1,17 @@
-import { TYPES } from './create-offer.js';
+import { TYPES } from './popup.js';
+import { setDefaultPosition } from './map.js';
+import { sendData } from './api.js';
 
-const titleInput = document.querySelector('#title');
-const priceInput = document.querySelector('#price');
-const roomsNumber = document.querySelector('#room_number');
-const capacity = document.querySelector('#capacity');
-const address = document.querySelector('#address');
-const type = document.querySelector('#type');
-const timeIn = document.querySelector('#timein');
-const timeOut = document.querySelector('#timeout');
+const form = document.querySelector('.ad-form');
+const titleInput = form.querySelector('#title');
+const priceInput = form.querySelector('#price');
+const roomsNumber = form.querySelector('#room_number');
+const capacity = form.querySelector('#capacity');
+const address = form.querySelector('#address');
+const type = form.querySelector('#type');
+const timeIn = form.querySelector('#timein');
+const timeOut = form.querySelector('#timeout');
+const mapFilters = document.querySelector('.map__filters');
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -21,6 +25,8 @@ const ROOMS_CAPACITY = {
   3: ['1', '2', '3'],
   100: ['0'],
 };
+
+const defaultCoordinates = address.value;
 
 titleInput.addEventListener('input', () => {
   const titleInputLength = titleInput.value.length;
@@ -36,8 +42,7 @@ titleInput.addEventListener('input', () => {
 });
 
 const addValidationForMinPrice = () => {
-  const typeMinPriceValue = TYPES[type.value].minPrice;
-  minPriceValue = typeMinPriceValue;
+  minPriceValue = TYPES[type.value].minPrice;
   priceInput.placeholder = minPriceValue;
   priceInput.min = minPriceValue;
 };
@@ -80,4 +85,29 @@ timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
-export {addValidationForRooms, addValidationForMinPrice, address};
+const clearForm = () => {
+  form.reset();
+  mapFilters.reset();
+  setDefaultPosition();
+  setTimeout(() => {
+    address.value = defaultCoordinates;
+    addValidationForMinPrice();
+  }, 0);
+
+};
+
+const formSubmit = () => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    address.disabled = false;
+    const formData = new FormData(form);
+    address.disabled = true;
+    sendData(formData);
+  });
+
+};
+
+
+form.addEventListener('reset', clearForm);
+
+export {addValidationForRooms, addValidationForMinPrice, address, formSubmit, clearForm};
