@@ -11,6 +11,7 @@ const address = form.querySelector('#address');
 const type = form.querySelector('#type');
 const timeIn = form.querySelector('#timein');
 const timeOut = form.querySelector('#timeout');
+const mapFilters = document.querySelector('.map__filters');
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -86,6 +87,7 @@ timeOut.addEventListener('change', () => {
 
 const clearForm = () => {
   form.reset();
+  mapFilters.reset();
   setDefaultPosition();
   setTimeout(() => {
     address.value = defaultCoordinates;
