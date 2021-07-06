@@ -7,7 +7,7 @@ const removeElement = (element) => {
 };
 
 
-const showSuccessMessege = () => {
+const showSuccessMesage = () => {
   const successElement = successTemplate.cloneNode(true);
   body.appendChild(successElement);
 
@@ -35,5 +35,5 @@ const showSuccessMessege = () => {
 };
 
 
-export {showSuccessMessege};
+export {showSuccessMesage};
 

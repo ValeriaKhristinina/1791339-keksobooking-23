@@ -1,7 +1,6 @@
 import { TYPES } from './popup.js';
-import { URL_API } from './api.js';
 import { setDefaultPosition } from './map.js';
-// import {showSuccessMessege} from './success.js';
+import { sendData } from './api.js';
 
 const form = document.querySelector('.ad-form');
 const titleInput = form.querySelector('#title');
@@ -85,41 +84,27 @@ timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
-const formSubmit = (onSucsses, showMessege, onError) => {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    address.disabled = false;
-    const formData = new FormData(form);
-    address.disabled = true;
-
-    fetch(URL_API,
-      {
-        method: 'POST',
-        body: formData,
-      },
-    )
-      .then((response) => {
-        if (response.ok) {
-          onSucsses();
-          showMessege();
-        } else {
-          onError();
-        }
-      })
-      .catch(() => {
-        onError();
-      }) ;
-  });
-
-};
-
 const clearForm = () => {
   form.reset();
   setDefaultPosition();
   setTimeout(() => {
     address.value = defaultCoordinates;
+    addValidationForMinPrice();
   }, 0);
+
 };
+
+const formSubmit = () => {
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    address.disabled = false;
+    const formData = new FormData(form);
+    address.disabled = true;
+    sendData(formData);
+  });
+
+};
+
 
 form.addEventListener('reset', clearForm);
 
