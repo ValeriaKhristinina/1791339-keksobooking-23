@@ -1,11 +1,15 @@
 import {activePageState} from './page-state.js';
 import { drawOffer } from './popup.js';
+import { filterMap } from './filtration.js';
+import {debounce} from '../utils/debounce.js';
 
+const address = document.querySelector('#address');
 const TOKIO_COORDINATES = {
   lat: 35.65283,
   lng: 139.83947,
 };
-const address = document.querySelector('#address');
+const RERENDER_DELAY = 500;
+
 
 const map = L.map('map-canvas')
   .on('load', () => {
@@ -53,20 +57,32 @@ mainPinMarker.on('moveend', (evt) => {
   address.value = `${newCoordinates.lat.toFixed(5)  } ${  newCoordinates.lng.toFixed(5)}`;
 });
 
-const renderPopups = (data) => {
-  data.forEach((obj) => {
-    const marker = L.marker({
-      lat: obj.location.lat,
-      lng: obj.location.lng,
-    }, {
-      icon,
-    });
 
-    marker
-      .addTo(map)
-      .bindPopup(drawOffer(obj));
+let arrayMarkers = [];
+
+const renderPopups = debounce((data) => {
+  arrayMarkers.forEach((marker) => {
+    marker.remove();
   });
-};
+  arrayMarkers = [];
+  data
+    .slice()
+    .filter(filterMap)
+    .slice(0,10)
+    .forEach((obj) => {
+      const marker = L.marker({
+        lat: obj.location.lat,
+        lng: obj.location.lng,
+      }, {
+        icon,
+      });
+
+      arrayMarkers.push(marker);
+      marker
+        .addTo(map)
+        .bindPopup(drawOffer(obj));
+    });
+}, RERENDER_DELAY);
 
 const setDefaultPosition = () => {
   mainPinMarker.setLatLng({
