@@ -1,18 +1,14 @@
 import {activePageState} from './page-state.js';
 import { drawOffer } from './popup.js';
-import {housingType, housingPrice, housingRooms, housingGuests} from './filtration.js';
+import { filterMap } from './filtration.js';
+import {debounce} from '../utils/debounce.js';
 
 const address = document.querySelector('#address');
-const inputWifi = document.querySelector('#filter-wifi');
-const inputDishwasher = document.querySelector('#filter-dishwasher');
-const inputParking = document.querySelector('#filter-parking');
-const inputWasher = document.querySelector('#filter-washer');
-const inputElevator = document.querySelector('#filter-elevator');
-const inputConditioner = document.querySelector('#filter-conditioner');
 const TOKIO_COORDINATES = {
   lat: 35.65283,
   lng: 139.83947,
 };
+const RERENDER_DELAY = 500;
 
 
 const map = L.map('map-canvas')
@@ -61,82 +57,17 @@ mainPinMarker.on('moveend', (evt) => {
   address.value = `${newCoordinates.lat.toFixed(5)  } ${  newCoordinates.lng.toFixed(5)}`;
 });
 
+
 let arrayMarkers = [];
-const renderPopups = (data) => {
+
+const renderPopups = debounce((data) => {
   arrayMarkers.forEach((marker) => {
     marker.remove();
   });
   arrayMarkers = [];
   data
     .slice()
-    .filter((item) => item.offer.type === housingType.value || housingType.value === 'any')
-    .filter((item) => {
-      if (housingPrice.value === 'middle' && item.offer.price >= 10000 && item.offer.price <= 50000) {
-        return true;
-      }
-      if (housingPrice.value === 'low' && item.offer.price < 10000) {
-        return true;
-      }
-      if (housingPrice.value === 'high' && item.offer.price > 50000) {
-        return true;
-      }
-      if (housingPrice.value === 'any') {
-        return true;
-      }
-      return false;
-    })
-    .filter((item) => item.offer.rooms === Number(housingRooms.value) || housingRooms.value === 'any')
-    .filter((item) =>  {
-      if (item.offer.guests === Number(housingGuests.value) || housingGuests.value === 'any') {
-        return true;
-      }
-      if (typeof item.offer.guests !== 'number') {
-        return false;
-      }
-      return false;
-    })
-    .filter((item) => {
-      if (inputWifi.checked) {
-        return item.offer.features && item.offer.features.includes(inputWifi.value);
-      } else {
-        return true;
-      }
-    })
-    .filter((item) => {
-      if (inputDishwasher.checked) {
-        return item.offer.features && item.offer.features.includes(inputDishwasher.value);
-      } else {
-        return true;
-      }
-    })
-    .filter((item) => {
-      if (inputParking.checked) {
-        return item.offer.features && item.offer.features.includes(inputParking.value);
-      } else {
-        return true;
-      }
-    })
-    .filter((item) => {
-      if (inputWasher.checked) {
-        return item.offer.features && item.offer.features.includes(inputWasher.value);
-      } else {
-        return true;
-      }
-    })
-    .filter((item) => {
-      if (inputElevator.checked) {
-        return item.offer.features && item.offer.features.includes(inputElevator.value);
-      } else {
-        return true;
-      }
-    })
-    .filter((item) => {
-      if (inputConditioner.checked) {
-        return item.offer.features && item.offer.features.includes(inputConditioner.value);
-      } else {
-        return true;
-      }
-    })
+    .filter(filterMap)
     .slice(0,10)
     .forEach((obj) => {
       const marker = L.marker({
@@ -151,7 +82,7 @@ const renderPopups = (data) => {
         .addTo(map)
         .bindPopup(drawOffer(obj));
     });
-};
+}, RERENDER_DELAY);
 
 const setDefaultPosition = () => {
   mainPinMarker.setLatLng({
