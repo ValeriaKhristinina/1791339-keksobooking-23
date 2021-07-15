@@ -16,6 +16,7 @@ const setMapFiltres = (cb) => {
     evt.preventDefault();
     cb();
   });
+  document.querySelector('.ad-form').addEventListener('reset', cb);
 };
 
 const filterHousingType = (item) => item.offer.type === housingType.value || housingType.value === 'any';

@@ -9,6 +9,9 @@ const getData = () => fetch(`${URL_API}/data`)
     if (response.ok) {
       return response.json();
     }
+  })
+  .catch((err) => {
+    console.log(err);
   });
 
 const sendData = (formData) => {

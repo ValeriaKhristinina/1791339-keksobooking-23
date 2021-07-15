@@ -93,7 +93,6 @@ const clearForm = () => {
     address.value = defaultCoordinates;
     addValidationForMinPrice();
   }, 0);
-
 };
 
 const formSubmit = () => {
