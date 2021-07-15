@@ -2,6 +2,16 @@ import { TYPES } from './popup.js';
 import { setDefaultPosition } from './map.js';
 import { sendData } from './api.js';
 
+const MIN_TITLE_LENGTH = 30;
+const MAX_TITLE_LENGTH = 100;
+const MAX_PRICE_VALUE = 1000000;
+const ROOMS_CAPACITY = {
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0'],
+};
+
 const form = document.querySelector('.ad-form');
 const titleInput = form.querySelector('#title');
 const priceInput = form.querySelector('#price');
@@ -13,19 +23,7 @@ const timeIn = form.querySelector('#timein');
 const timeOut = form.querySelector('#timeout');
 const mapFilters = document.querySelector('.map__filters');
 
-const MIN_TITLE_LENGTH = 30;
-const MAX_TITLE_LENGTH = 100;
-
 let minPriceValue = 1000;
-const MAX_PRICE_VALUE = 1000000;
-
-const ROOMS_CAPACITY = {
-  1: ['1'],
-  2: ['1', '2'],
-  3: ['1', '2', '3'],
-  100: ['0'],
-};
-
 const defaultCoordinates = address.value;
 
 titleInput.addEventListener('input', () => {

@@ -20,8 +20,8 @@ const getRandomArray = (array) => {
   const items = [];
 
   for (let index = 0; index <= array.length - 1; index++) {
-    const RANDOM_NUMBER = findRandomNumber(0, 1);
-    if (RANDOM_NUMBER === 1) {
+    const randomNumber = findRandomNumber(0, 1);
+    if (randomNumber === 1) {
       items.push(array[index]);
     }
   }

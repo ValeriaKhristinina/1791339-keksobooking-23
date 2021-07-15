@@ -2,17 +2,17 @@ import {activePageState} from './page-state.js';
 import { drawOffer } from './popup.js';
 import { filterMap } from './filtration.js';
 import {debounce} from '../utils/debounce.js';
-
 import {getData} from './api.js';
 import {showAlert} from '../utils/show-alert.js';
 import {setMapFiltres} from './filtration.js';
 
-const address = document.querySelector('#address');
 const TOKIO_COORDINATES = {
   lat: 35.65283,
   lng: 139.83947,
 };
 const RERENDER_DELAY = 500;
+
+const address = document.querySelector('#address');
 
 let renderPopups = null;
 const map = L.map('map-canvas')
