@@ -17,15 +17,15 @@ const getRandomArrayElement = (elements) =>
   elements[findRandomNumber(0, elements.length - 1)];
 
 const getRandomArray = (array) => {
-  const newArray = [];
+  const items = [];
 
   for (let index = 0; index <= array.length - 1; index++) {
     const RANDOM_NUMBER = findRandomNumber(0, 1);
     if (RANDOM_NUMBER === 1) {
-      newArray.push(array[index]);
+      items.push(array[index]);
     }
   }
-  return newArray;
+  return items;
 };
 
 export {
