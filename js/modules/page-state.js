@@ -3,7 +3,7 @@ const fieldsets = adForm.querySelectorAll('fieldset');
 const mapFilter = document.querySelector('.map__filters');
 const featuredList = mapFilter.querySelectorAll('input[name="features"]');
 const selectFilters = mapFilter.querySelectorAll('select');
-
+console.log('page-state 1');
 const disablePageState = () => {
   adForm.classList.add('ad-form--disabled');
   mapFilter.classList.add('map__filters--disabled');
@@ -34,4 +34,4 @@ const activePageState = () => {
 
 disablePageState();
 
-export { activePageState};
+export {activePageState};

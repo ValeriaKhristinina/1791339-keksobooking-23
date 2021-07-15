@@ -3,6 +3,10 @@ import { drawOffer } from './popup.js';
 import { filterMap } from './filtration.js';
 import {debounce} from '../utils/debounce.js';
 
+import {getData} from './api.js';
+import {showAlert} from '../utils/show-alert.js';
+import {setMapFiltres} from './filtration.js';
+
 const address = document.querySelector('#address');
 const TOKIO_COORDINATES = {
   lat: 35.65283,
@@ -10,10 +14,19 @@ const TOKIO_COORDINATES = {
 };
 const RERENDER_DELAY = 500;
 
-
+let renderPopups = null;
 const map = L.map('map-canvas')
   .on('load', () => {
-    activePageState();
+    getData()
+      .then((data) => {
+        renderPopups(data);
+        activePageState();
+        setMapFiltres(() => renderPopups(data));
+      })
+      .catch(() => {
+        showAlert('Произошла ошибка при загрузке данных');
+      });
+
     address.value = `${TOKIO_COORDINATES.lat } ${ TOKIO_COORDINATES.lng}`;
   })
   .setView({
@@ -60,7 +73,7 @@ mainPinMarker.on('moveend', (evt) => {
 
 let arrayMarkers = [];
 
-const renderPopups = debounce((data) => {
+renderPopups = debounce((data) => {
   arrayMarkers.forEach((marker) => {
     marker.remove();
   });
