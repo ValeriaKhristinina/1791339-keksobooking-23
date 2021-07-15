@@ -3,7 +3,6 @@ import './modules/popup.js';
 import {addValidationForRooms, addValidationForMinPrice} from './modules/form.js';
 import {formSubmit} from './modules/form.js';
 import './modules/filtration.js';
-console.log('main 1');
 addValidationForRooms();
 addValidationForMinPrice();
 
