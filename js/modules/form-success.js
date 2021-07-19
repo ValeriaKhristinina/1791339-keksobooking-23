@@ -16,8 +16,6 @@ const showSuccessMesage = () => {
     if (evt.keyCode === 27 && body.contains(successElement)) {
       removeElement(successElement);
       body.removeEventListener('keydown', handleEsc);
-      // eslint-disable-next-line no-use-before-define
-      successElement.removeEventListener('mousedown', handleClick);
     }
   };
 

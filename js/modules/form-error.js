@@ -14,8 +14,6 @@ const showErrorMessage = () => {
     if (evt.keyCode === 27 && body.contains(errorElement)) {
       removeElement(errorElement);
       body.removeEventListener('keydown', handleEsc);
-      // eslint-disable-next-line no-use-before-define
-      errorElement.removeEventListener('mousedown', handleClick);
     }
   };
 
