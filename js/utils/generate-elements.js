@@ -1,3 +1,6 @@
+const IMAGE_WIDTH = 45;
+const IMAGE_HEIGHT = 40;
+
 // Craete new HTML-element
 const makeElement = (tagName, classNames, textDescription) => {
   const newElement = document.createElement(tagName);
@@ -29,8 +32,8 @@ const createListPhotos = (arrayPhotos) => {
   const fragment = document.createDocumentFragment();
   arrayPhotos.forEach((element) => {
     const elementImg = makeElement('img', ['popup__photo']);
-    elementImg.width = 45;
-    elementImg.height = 40;
+    elementImg.width = IMAGE_WIDTH;
+    elementImg.height = IMAGE_HEIGHT;
     elementImg.alt = 'Фотография жилья';
     elementImg.src = element;
     fragment.appendChild(elementImg);

@@ -1,3 +1,6 @@
+const MIDDLE_PRICE = 10000;
+const HIGH_PRICE = 50000;
+
 const mapFilter = document.querySelector('.map__filters');
 const housingType = mapFilter.querySelector('#housing-type');
 const housingPrice = mapFilter.querySelector('#housing-price');
@@ -21,13 +24,13 @@ const setMapFilters = (cb) => {
 
 const filterHousingType = (item) => item.offer.type === housingType.value || housingType.value === 'any';
 const filterHousingPrice = (item) => {
-  if (housingPrice.value === 'middle' && item.offer.price >= 10000 && item.offer.price <= 50000) {
+  if (housingPrice.value === 'middle' && item.offer.price >= MIDDLE_PRICE && item.offer.price <= HIGH_PRICE) {
     return true;
   }
-  if (housingPrice.value === 'low' && item.offer.price < 10000) {
+  if (housingPrice.value === 'low' && item.offer.price < MIDDLE_PRICE) {
     return true;
   }
-  if (housingPrice.value === 'high' && item.offer.price > 50000) {
+  if (housingPrice.value === 'high' && item.offer.price > HIGH_PRICE) {
     return true;
   }
   if (housingPrice.value === 'any') {
