@@ -11,7 +11,7 @@ const inputWasher = document.querySelector('#filter-washer');
 const inputElevator = document.querySelector('#filter-elevator');
 const inputConditioner = document.querySelector('#filter-conditioner');
 
-const setMapFiltres = (cb) => {
+const setMapFilters = (cb) => {
   mapFilter.addEventListener('change', (evt) => {
     evt.preventDefault();
     cb();
@@ -95,5 +95,5 @@ const filterInputConditioner = (item) => {
 
 const filterMap = (item) => filterHousingType(item) && filterHousingPrice(item) && filterHousingRooms(item) && filterHousingGuests(item) && filterInputWifi(item) && filterInputDishwasher(item) && filterInputParking(item) && filterInputWasher(item) && filterInputElevator(item) && filterInputConditioner(item);
 
-export {setMapFiltres, filterMap};
+export {setMapFilters, filterMap};
 

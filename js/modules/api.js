@@ -1,5 +1,5 @@
 import {showSuccessMesage} from './form-success.js';
-import { showErrorMessege } from './form-error.js';
+import { showErrorMessage } from './form-error.js';
 import {clearForm} from './form.js';
 
 const URL_API = 'https://23.javascript.pages.academy/keksobooking';
@@ -25,11 +25,11 @@ const sendData = (formData) => {
         showSuccessMesage();
         clearForm();
       } else {
-        showErrorMessege();
+        showErrorMessage();
       }
     })
     .catch(() => {
-      showErrorMessege();
+      showErrorMessage();
     });
 };
 

@@ -4,7 +4,7 @@ import { filterMap } from './filtration.js';
 import {debounce} from '../utils/debounce.js';
 import {getData} from './api.js';
 import {showAlert} from '../utils/show-alert.js';
-import {setMapFiltres} from './filtration.js';
+import {setMapFilters} from './filtration.js';
 
 const TOKIO_COORDINATES = {
   lat: 35.65283,
@@ -21,7 +21,7 @@ const map = L.map('map-canvas')
       .then((data) => {
         renderPopups(data);
         activePageState();
-        setMapFiltres(() => renderPopups(data));
+        setMapFilters(() => renderPopups(data));
       })
       .catch(() => {
         showAlert('Произошла ошибка при загрузке данных');

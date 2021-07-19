@@ -5,7 +5,7 @@ const removeElement = (element) => {
   body.removeChild(element);
 };
 
-const showErrorMessege = () => {
+const showErrorMessage = () => {
   const errorElement = errorTemplate.cloneNode(true);
   body.appendChild(errorElement);
 
@@ -32,4 +32,4 @@ const showErrorMessege = () => {
   errorElement.addEventListener('mousedown', handleClick);
 };
 
-export {showErrorMessege};
+export {showErrorMessage};
